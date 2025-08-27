@@ -77,6 +77,8 @@ min_bandwidth = 3.0
 
 > **Note:** Do **not** include units in numeric inputs. Example: Use `6.0`, **not** `6.0s`.
 
+Sample output example in main.
+
 ## Known Issues & Limitations
 
 - May miss low-amplitude or clustered calls
