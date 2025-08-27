@@ -1,6 +1,6 @@
 ## Signal Detection Formulated for RavenPro
 
-# [How to use (required manual inputs)]
+# How to use (required manual inputs)
 - No inputs have units (e.g. don't enter 6.0s, just 6.0)
 -----------------------------------------------------------------
 [Input/Output Settings]
@@ -9,7 +9,7 @@
 
 Ending slashes are NOT needed
 -----------------------------------------------------------------
-# [Channel Settings]
+# Channel Settings
 - bad_channels: input the channels that you do not want to include
 - detection parameters:
     threshold: input the variability of a call
