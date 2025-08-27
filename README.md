@@ -43,18 +43,30 @@ All settings are configured in `whale_detector_config.txt`.
 
 ### Example Configuration
 ```
-bad_channels = [2, 5]
-threshold = 0.5
-freq_low = 13
-freq_high = 27
+# Channel settings (1-based indexing, separate multiple channels with commas, in order)
+bad_channels = 1. 4
+
+# Detection parameters 
+# To detect fainter calls, decrease threshold and vice versa
+threshold = 3.0
+freq_low = 12.0
+freq_high = 32.0
+
+# Call duration range (seconds)
+min_duration = 0.5
+max_duration = 3
+
+# Advanced parameters (optional)
+merge_window = 1.5
+min_bandwidth = 3.0 
 ```
 
 ## Usage
 
-1. Edit `whale_detector_config.txt` with your desired settings
+1. Edit `signal_detector_config.txt` with your desired settings
 2. Run the detector:
    ```bash
-   python fin_whale_detector.py
+   python signal_detector.py
    ```
 3. Check the output directory for generated selection tables
 
@@ -77,6 +89,3 @@ freq_high = 27
 - Removed SNR filtering
 - Calls automatically detected in **13–27 Hz range**
 - Improved low-frequency detection
-
-## Contributing
-Please feel free to submit issues and enhancement requests!
