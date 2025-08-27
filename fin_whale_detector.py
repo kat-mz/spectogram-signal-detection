@@ -4,7 +4,7 @@ from scipy.signal import butter, sosfilt, hilbert
 import os
 from scipy.ndimage import uniform_filter1d #Commented out for now, June 10th, 2025
 
-class FinWhaleDetector:
+class SignalDetector:
     def __init__(self, 
                  freq_range,
                  call_duration_range,
