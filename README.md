@@ -1,30 +1,82 @@
-## Signal Detection Formulated for RavenPro
+# Signal Detector for RavenPro
 
-# How to use (required manual inputs)
-- No inputs have units (e.g. don't enter 6.0s, just 6.0)
------------------------------------------------------------------
-[Input/Output Settings]
-- Input full paths of directory for input file (.wav/aif) 
-- Input full path of directory for location of directory for outputted text file
+This program automatically generates a **RavenPro selection table** identifying possible calls from audio recordings based on amplitude. It supports multiple audio channels and can be configured to detect calls within specific frequency ranges.
 
-Ending slashes are NOT needed
------------------------------------------------------------------
-# Channel Settings
-- bad_channels: input the channels that you do not want to include
-- detection parameters:
-    threshold: input the variability of a call
-    freq_low: lower bound of bandwidth
-    freq_high: higher bound of bandwidth
------------------------------------------------------------------
+> ⚠️ **Note:** The program may produce errors in noisy data. Manual verification of detected calls is recommended.
 
-# Current Errors/Updates Needed as of June 11th, 2025
-- Associating calls, such that CALL IDS are in order
-- Removing SNR (FIXED)
-- Very error prone in high noise areas *
-- Misses low amplitude sounds, clustered sounds *
-- For calls mixed in with other calls - doesn't detect due to length parameters
+## Table of Contents
+- [Overview](#overview)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Input / Output](#input--output)
+- [Known Issues & Limitations](#known-issues--limitations)
+- [Changelog](#changelog)
 
-#Update (1) - June 11th, 2025
-- Removed SNR
-- Automated range of calls to be around 13 HZ to 27 HZ - sounds are now clipped at those heights
-- Better low frequency detection
+## Overview
+
+- Detects signals in audio files
+- Generates a **RavenPro-compatible selection table** (`.txt`)
+- Filters calls to a default frequency range of **13–27 Hz**
+- Improved detection for low-frequency and clustered calls
+
+## Installation
+
+1. Ensure **Python 3.x** is installed
+2. Install required dependencies:
+   ```bash
+   pip install numpy scipy
+   ```
+3. Prepare your audio files in `.wav` or `.aif` format
+
+## Configuration
+
+All settings are configured in `whale_detector_config.txt`.
+
+### Channels
+- `bad_channels`: List channels to exclude from detection
+
+### Detection Parameters
+- `threshold`: Sensitivity of call detection by amplitude; lower to decrease sensitivity (numeric, no units)
+- `freq_low`: Lower bound of frequency detection (Hz)
+- `freq_high`: Upper bound of frequency detection (Hz)
+
+### Example Configuration
+```
+bad_channels = [2, 5]
+threshold = 0.5
+freq_low = 13
+freq_high = 27
+```
+
+## Usage
+
+1. Edit `whale_detector_config.txt` with your desired settings
+2. Run the detector:
+   ```bash
+   python fin_whale_detector.py
+   ```
+3. Check the output directory for generated selection tables
+
+## Input / Output
+
+- **Input:** Directory containing audio files (`.wav` or `.aif`)
+- **Output:** Directory where selection table text files will be saved
+
+> **Note:** Do **not** include units in numeric inputs. Example: Use `6.0`, **not** `6.0s`.
+
+## Known Issues & Limitations
+
+- May miss low-amplitude or clustered calls
+- Calls mixed with other overlapping calls may not be detected
+- High noise levels may produce false positives or missed detections
+
+## Changelog
+
+### June 11, 2025
+- Removed SNR filtering
+- Calls automatically detected in **13–27 Hz range**
+- Improved low-frequency detection
+
+## Contributing
+Please feel free to submit issues and enhancement requests!
