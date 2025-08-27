@@ -1,0 +1,27 @@
+# Fin Whale Call Detector Configuration File
+# Lines starting with # are comments and will be ignored
+# Use format: parameter_name = value
+# DO NOT DELETE parameter_name or it will not be read properly
+
+# Input audio file, in terms of pathway (Required)
+input_file = /Users/katz/Documents/Whales/Audio Files/April 15th/NOPP6_EST_20090415_230000.aif
+# Output settings (Directory of folder to output to, no ending slash)
+output_folder = /Users/katz/Documents/Whales/Tables_Outputs/April_15th
+output_filename = fw_2300.txt
+
+# Channel settings (1-based indexing, separate multiple channels with commas, in order)
+bad_channels = 4
+
+# Detection parameters 
+# To detect fainter calls, decrease threshold and vice versa
+threshold = 3.0
+freq_low = 12.0
+freq_high = 32.0
+
+# Call duration range (seconds)
+min_duration = 0.5
+max_duration = 3
+
+# Advanced parameters (optional)
+merge_window = 1.5
+min_bandwidth = 3.0
